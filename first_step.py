@@ -4,7 +4,7 @@ def imprimir_string(strings):
     for string in strings:
         print(string)
 
-def let_arquivo_txt(nome_arquivo):
+def ler_arquivo_txt(nome_arquivo):
     strings = []
     try:
         with open(nome_arquivo, 'r') as arquivo:
@@ -16,18 +16,16 @@ def let_arquivo_txt(nome_arquivo):
     return strings
 
 nome_arquivo = "output.txt"
-strings = let_arquivo_txt(nome_arquivo)
+lista = ler_arquivo_txt(nome_arquivo)
 
-# imprimir_string(strings)
+# imprimir_string(lista)
 
 def escrever_lista_em_arquivo(lista, nome_arquivo):
     with open(nome_arquivo, "w") as arquivo:
         for item in lista:
             arquivo.write(str(item) + "\n")
 
-novo_arquivo = "lista.txt"
 
-escrever_lista_em_arquivo(strings, novo_arquivo)
 
 
 
