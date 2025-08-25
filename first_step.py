@@ -14,7 +14,7 @@ def let_arquivo_txt(nome_arquivo):
     return strings
 
 nome_arquivo = "output.txt"
-
 strings = let_arquivo_txt(nome_arquivo)
 
 imprimir_string(strings)
+
