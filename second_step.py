@@ -1,5 +1,7 @@
 import sys
 import time
+from collections import deque
+
 
 def ler_arquivo_txt(nome_arquivo):
     strings = []
@@ -17,7 +19,7 @@ lista = ler_arquivo_txt(nome_arquivo)
 
 posicoes = [0, 99, 999, 4999, len(lista)-1]
 
-"""
+
 inicio_criacao = time.time()
 hashtable = {}
 for i, arquivo in enumerate(lista):
@@ -43,7 +45,7 @@ print("\nArquivos recuperados:")
 for pos in posicoes:
     print(f"Posição {pos + 1}: {hashtable.get(pos)}")
 print("\n")
-"""
+
 inicio_criacao = time.time()
 pilha = list(lista)
 fim_criacao = time.time()
@@ -72,7 +74,37 @@ for pos in posicoes:
 print("\n")
 
 
+inicio_criacao = time.time()
+fila = deque(lista)
+fim_criacao = time.time()
 
+memoria_fila = sys.getsizeof(fila)
+for item in fila:
+    memoria_fila += sys.getsizeof(item)
+
+inicio_recuperacao = time.time()
+lista_fila = list(fila)
+arquivos_fila = {}
+for pos in posicoes:
+    if pos < len(lista_fila):
+        arquivos_fila[pos] = lista_fila[pos]
+    else:
+        arquivos_fila[pos] = None
+fim_recuperacao = time.time()
+
+
+print("====================")
+print("Fila")
+print(f"Tempo de criação: {fim_criacao - inicio_criacao:.6f} segundos")
+print(f"Tempo de recuperação: {fim_recuperacao - inicio_recuperacao:.6f} segundos")
+print(f"Memória utilizada: {memoria_fila} bytes")
+print("\nArquivos recuperados:")
+for pos in posicoes:
+    if pos < len(lista_fila):
+        print(f"Posição {pos + 1}: {lista_fila[pos]}")
+    else:
+        print(f"Posição {pos + 1}: Não encontrado")
+print("\n")
 
 
 
