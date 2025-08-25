@@ -25,7 +25,7 @@ def escrever_lista_em_arquivo(lista, nome_arquivo):
         for item in lista:
             arquivo.write(str(item) + "\n")
 
-
+"""
 def bubble_sort(lista):
     arr = lista.copy()
     n = len(arr)
@@ -53,11 +53,33 @@ print("\n=============================")
 print("Bubble Sort")
 print(f"Tempo de execução: {total_bubble} segundos")
 print(f"Total de elementos ordenados: {len(resultado_bubble)}")
+"""
 
+def selection_sort(lista):
+    arr = lista.copy()
+    n = len(arr)
 
+    for i in range(n):
+        min_index = i
+        for j in range(i+1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
 
+        arr[i], arr[min_index] = arr[min_index], arr[i]
 
+    return arr
 
+inicio_selection = time.time()
+resultado_selection = selection_sort(lista)
+fim_selection = time.time()
+total_selection = fim_selection - inicio_selection
+
+escrever_lista_em_arquivo(resultado_selection, "selection_sorted.txt")
+
+print("\n=============================")
+print("Selection Sort")
+print(f"Tempo de execução: {total_selection} segundos")
+print(f"Total de elementos ordenados: {len(resultado_selection)}")
 
 
 
